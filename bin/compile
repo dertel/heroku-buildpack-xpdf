@@ -3,7 +3,7 @@ BUILD_DIR=$1
 
 INSTALL_DIR=$BUILD_DIR/vendor/xpdf/
 ENVSCRIPT=$BUILD_DIR/.profile.d/xpdf.sh
-XPDF_RC=$BUILD_DIR/.xpdfrc
+XPDF_RC=$BUILD_DIR/.profile.d/.xpdfrc
 XPDF_DIR=${HOME}/vendor/xpdf/xpdf
 XPDF_CHINESE_SUPPORT=$BUILD_DIR/vendor/xpdf/xpdf-chinese-traditional
 echo "Untarring xpdf.tar.gz into ${INSTALL_DIR}"
