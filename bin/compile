@@ -25,7 +25,7 @@ echo "============================================"
 echo "Building runtime environment for xpdf"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"$XPDF_DIR/bin64:\$PATH\"" > $ENVSCRIPT
-echo "export LD_LIBRARY_PATH=\"$XPDF_CHINESE_SUPPORT:\$LD_LIBRARY_PATH\"" >> $ENVSCRIPT
+##echo "export LD_LIBRARY_PATH=\"$XPDF_CHINESE_SUPPORT:\$LD_LIBRARY_PATH\"" >> $ENVSCRIPT
 echo "======================="
 echo "Building .pdfrc"
 echo "======================="
