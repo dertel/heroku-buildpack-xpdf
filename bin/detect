@@ -1,2 +1,3 @@
 #!/bin/sh
-echo "detect"
+echo "Xpdf 3.04 + Chinese suppport"
+exit 0

@@ -11,10 +11,17 @@ echo "Untarring xpdf.tar.gz into ${INSTALL_DIR}"
 
 mkdir -p $INSTALL_DIR
 tar -zxvf xpdf.tar.gz -C $INSTALL_DIR
-
-echo "Complete!"
-
+echo "Core installation completed!"
+echo "============================================"
+echo "adding language pack - chinese-traditional"
+tar -zxvf xpdf-chinese-traditional.tar.gz -C $INSTALL_DIR
+echo "Language pack installation completed!"
+echo "============================================"
 echo "Building runtime environment for xpdf"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"$XPDF_DIR/bin64:\$PATH\"" > $ENVSCRIPT
 
+#https://pypi.python.org/pypi/pdfminer/
+#http://pdf2html.tabesugi.net:8080/
+#https://euske.github.io/pdfminer/#source
+#https://github.com/smalot/pdfparser
