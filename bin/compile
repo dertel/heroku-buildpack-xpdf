@@ -3,7 +3,7 @@ BUILD_DIR=$1
 
 INSTALL_DIR=$BUILD_DIR/vendor/xpdf/
 ENVSCRIPT=$BUILD_DIR/.profile.d/xpdf.sh
-XPDF_RC=$BUILD_DIR/.profile.d/.xpdfrc
+XPDF_RC=$BUILD_DIR/bin/.xpdfrc
 XPDF_DIR=${HOME}/vendor/xpdf/xpdf
 XPDF_CHINESE_SUPPORT=$BUILD_DIR/vendor/xpdf/xpdf-chinese-traditional
 echo "============================================"
@@ -25,13 +25,15 @@ echo "============================================"
 echo "Building runtime environment for xpdf"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"$XPDF_DIR/bin64:\$PATH\"" > $ENVSCRIPT
+echo "export LD_LIBRARY_PATH=\"$XPDF_CHINESE_SUPPORT:\$LD_LIBRARY_PATH\"" >> $ENVSCRIPT
 echo "======================="
 echo "Building .pdfrc"
 echo "======================="
-echo "cidToUnicode	Adobe-CNS1	$XPDF_CHINESE_SUPPORT/Adobe-CNS1.cidToUnicode" >> $XPDF_RC
-echo "unicodeMap	Big5		$XPDF_CHINESE_SUPPORT/Big5.unicodeMap" >> $XPDF_RC
-echo "unicodeMap	Big5ascii	$XPDF_CHINESE_SUPPORT/Big5ascii.unicodeMap" >> $XPDF_RC
-echo "cMapDir		Adobe-CNS1	$XPDF_CHINESE_SUPPORT/CMap" >> $XPDF_RC
+
+echo "cidToUnicode	Adobe-CNS1	$XPDF_CHINESE_SUPPORT/Adobe-CNS1.cidToUnicode" > $XPDF_RC
+echo "unicodeMap	Big5		$XPDF_CHINESE_SUPPORT/Big5.unicodeMap" > $XPDF_RC
+echo "unicodeMap	Big5ascii	$XPDF_CHINESE_SUPPORT/Big5ascii.unicodeMap" > $XPDF_RC
+echo "cMapDir		Adobe-CNS1	$XPDF_CHINESE_SUPPORT/CMap" > $XPDF_RC
 echo "toUnicodeDir				$XPDF_CHINESE_SUPPORT/CMap" >> $XPDF_RC
 
 #fontFileCC	Adobe-CNS1	/usr/..../bkai00mp.ttf
