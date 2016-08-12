@@ -3,7 +3,7 @@ BUILD_DIR=$1
 
 INSTALL_DIR=$BUILD_DIR/vendor/xpdf/
 ENVSCRIPT=$BUILD_DIR/.profile.d/xpdf.sh
-XPDF_RC=$BUILD_DIR/.xpdfrc
+XPDF_RC=~/.xpdfrc
 XPDF_DIR=${HOME}/vendor/xpdf/xpdf
 XPDF_CHINESE_SUPPORT=$BUILD_DIR/vendor/xpdf/xpdf-chinese-traditional
 echo "============================================"
@@ -29,16 +29,24 @@ echo "export LD_LIBRARY_PATH=\"$XPDF_CHINESE_SUPPORT:\$LD_LIBRARY_PATH\"" >> $EN
 echo "======================="
 echo "Building .pdfrc"
 echo "======================="
-
-echo "cidToUnicode	Adobe-CNS1	$XPDF_CHINESE_SUPPORT/Adobe-CNS1.cidToUnicode" > $XPDF_RC
-echo "unicodeMap	Big5		$XPDF_CHINESE_SUPPORT/Big5.unicodeMap" > $XPDF_RC
-echo "unicodeMap	Big5ascii	$XPDF_CHINESE_SUPPORT/Big5ascii.unicodeMap" > $XPDF_RC
-echo "cMapDir		Adobe-CNS1	$XPDF_CHINESE_SUPPORT/CMap" > $XPDF_RC
-echo "toUnicodeDir				$XPDF_CHINESE_SUPPORT/CMap" >> $XPDF_RC
-
+cat <<'EOF' >$XPDF_RC
+#----- begin Chinese Traditional support package (2011-sep-02)
+cidToUnicode Adobe-CNS1	$XPDF_CHINESE_SUPPORT/Adobe-CNS1.cidToUnicode
+unicodeMap Big5	$XPDF_CHINESE_SUPPORT/Big5.unicodeMap
+unicodeMap Big5ascii $XPDF_CHINESE_SUPPORT/Big5ascii.unicodeMap
+cMapDir	Adobe-CNS1 $XPDF_CHINESE_SUPPORT/CMap
+toUnicodeDir $XPDF_CHINESE_SUPPORT/CMap
+textEncoding UTF-8
+#----- end Chinese Traditional support package
+EOF
+echo "======================="
+echo "set information on .pdfrc done"
+echo "======================="
+#
 #fontFileCC	Adobe-CNS1	/usr/..../bkai00mp.ttf
-
+#
 #https://pypi.python.org/pypi/pdfminer/
 #http://pdf2html.tabesugi.net:8080/
 #https://euske.github.io/pdfminer/#source
 #https://github.com/smalot/pdfparser
+#
