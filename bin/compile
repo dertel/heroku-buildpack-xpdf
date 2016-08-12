@@ -3,7 +3,7 @@ BUILD_DIR=$1
 
 INSTALL_DIR=$BUILD_DIR/vendor/xpdf/
 ENVSCRIPT=$BUILD_DIR/.profile.d/xpdf.sh
-XPDF_RC=~/.xpdfrc
+XPDFRCSCRIPT=${HOME}/.xpdfrc
 XPDF_DIR=${HOME}/vendor/xpdf/xpdf
 XPDF_CHINESE_SUPPORT=$BUILD_DIR/vendor/xpdf/xpdf-chinese-traditional
 echo "============================================"
@@ -29,7 +29,7 @@ echo "export LD_LIBRARY_PATH=\"$XPDF_CHINESE_SUPPORT:\$LD_LIBRARY_PATH\"" >> $EN
 echo "======================="
 echo "Building .pdfrc"
 echo "======================="
-cat <<'EOF' >$XPDF_RC
+cat <<EOF > $XPDFRCSCRIPT
 #----- begin Chinese Traditional support package (2011-sep-02)
 cidToUnicode Adobe-CNS1	$XPDF_CHINESE_SUPPORT/Adobe-CNS1.cidToUnicode
 unicodeMap Big5	$XPDF_CHINESE_SUPPORT/Big5.unicodeMap
