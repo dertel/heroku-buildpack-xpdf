@@ -3,9 +3,11 @@ BUILD_DIR=$1
 
 INSTALL_DIR=$BUILD_DIR/vendor/xpdf/
 ENVSCRIPT=$BUILD_DIR/.profile.d/xpdf.sh
-XPDFRCSCRIPT=${HOME}/.xpdfrc
+XPDFRCSCRIPT=$BUILD_DIR/.xpdfrc
 XPDF_DIR=${HOME}/vendor/xpdf/xpdf
-XPDF_CHINESE_SUPPORT=$BUILD_DIR/vendor/xpdf/xpdf-chinese-traditional
+XPDF_CHINESE_SUPPORT=${HOME}/vendor/xpdf/xpdf-chinese-traditional
+XPDF_CHINESE_SIMPLIFIED_SUPPORT=${HOME}/vendor/xpdf/xpdf-chinese-simplified
+
 echo "============================================"
 echo "Build XPDF module"
 echo "============================================"
@@ -17,8 +19,8 @@ echo "Core installation completed!"
 echo "============================================"
 echo "adding language pack - chinese-traditional"
 echo "======================="
-mkdir -p $XPDF_CHINESE_SUPPORT
-tar -zxvf xpdf-chinese-traditional.tar.gz -C $XPDF_CHINESE_SUPPORT
+tar -zxvf xpdf-chinese-traditional.tar.gz -C $INSTALL_DIR
+tar -zxvf xpdf-chinese-simplified.tar.gz -C $INSTALL_DIR
 echo "======================="
 echo "Language pack installation completed!"
 echo "============================================"
@@ -38,6 +40,15 @@ cMapDir	Adobe-CNS1 $XPDF_CHINESE_SUPPORT/CMap
 toUnicodeDir $XPDF_CHINESE_SUPPORT/CMap
 textEncoding UTF-8
 #----- end Chinese Traditional support package
+#----- begin Chinese Simplified support package (2011-sep-02)
+cidToUnicode Adobe-GB1 $XPDF_CHINESE_SIMPLIFIED_SUPPORT/Adobe-GB1.cidToUnicode
+unicodeMap ISO-2022-CN $XPDF_CHINESE_SIMPLIFIED_SUPPORT/ISO-2022-CN.unicodeMap
+unicodeMap EUC-CN  $XPDF_CHINESE_SIMPLIFIED_SUPPORT/EUC-CN.unicodeMap
+unicodeMap GBK  $XPDF_CHINESE_SIMPLIFIED_SUPPORT/GBK.unicodeMap
+cMapDir  Adobe-GB1 $XPDF_CHINESE_SIMPLIFIED_SUPPORT/CMap
+toUnicodeDir   $XPDF_CHINESE_SIMPLIFIED_SUPPORT/CMap
+textEncoding UTF-8
+#----- end Chinese Simplified support package
 EOF
 echo "======================="
 echo "set information on .pdfrc done"
